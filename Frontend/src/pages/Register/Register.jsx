@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import Logo from "../../assets/logo.svg";
@@ -27,6 +27,13 @@ const Register = () => {
     draggable: true,
     theme: "dark",
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate('/');
+    }
+  },[])
 
   const handleValidation = () => {
     const { password, confirmPassword, username, email } = values;
@@ -59,7 +66,7 @@ const Register = () => {
         const token = response.headers['x-auth-token'];
         if (token) {
           localStorage.setItem("token", token);
-          navigate('/');
+          navigate('/setAvatar');
         }
       } catch (error) {
         if (error.response) {

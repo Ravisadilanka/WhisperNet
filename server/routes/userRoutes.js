@@ -52,4 +52,19 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.post('/setAvatar/:id', async (req, res) => {
+  try {
+    const user = await Users.findById(req.params.id);
+    if (!user) return res.status(400).send('User not found');
+
+    user.avatarImage = req.body.image;
+    user.isAvatarImageSet = true
+    await user.save();
+
+    res.send({ success: true });
+  } catch (error) {
+    res.status(500).send('Error setting avatar: ' + error.message);
+  }
+})
+
 module.exports = router;
