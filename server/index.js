@@ -6,7 +6,9 @@ const userRoutes = require('./routes/userRoutes')
 const app = express()
 require('dotenv').config()
 
-app.use(cors())
+app.use(cors({
+    exposedHeaders: ['x-auth-token'],
+}));
 app.use(express.json())
 
 app.use('/api/auth', userRoutes)

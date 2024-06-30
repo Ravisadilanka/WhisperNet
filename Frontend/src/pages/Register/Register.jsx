@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import Logo from "../../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,6 +14,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -49,12 +50,17 @@ const Register = () => {
     e.preventDefault();
     if (handleValidation()) {
       try {
-        const { password, confirmPassword, username, email } = values;
-        const { data } = await axios.post(registerRoute, {
+        const { password, username, email } = values;
+        const response = await axios.post(registerRoute, {
           username,
           email,
           password,
         });
+        const token = response.headers['x-auth-token'];
+        if (token) {
+          localStorage.setItem("token", token);
+          navigate('/');
+        }
       } catch (error) {
         if (error.response) {
           toast.error(error.response.data, toastOptions);
