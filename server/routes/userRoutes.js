@@ -1,5 +1,6 @@
 const express = require('express');
 const Users = require('../models/userModel');
+const auth = require('../middleware/auth')
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -64,6 +65,16 @@ router.post('/setAvatar/:id', async (req, res) => {
     res.send({ success: true });
   } catch (error) {
     res.status(500).send('Error setting avatar: ' + error.message);
+  }
+})
+
+router.get('/allusers/:id', auth, async (req, res) => {
+  try {
+    const users = await Users.find({ _id: { $ne: req.user._id } }).select('-password -isAvatarImageSet')
+
+    res.send(users)
+  } catch (error) {
+    res.status(500).send('Error getting all users: ' + error.message);
   }
 })
 
