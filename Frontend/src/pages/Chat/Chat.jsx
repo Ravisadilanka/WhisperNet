@@ -6,11 +6,12 @@ import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import Contacts from "../../components/Contacts/Contacts";
 import Welcome from "../../components/Welcome/Welcome";
+import ChatContainer from "../../components/ChatContainer/ChatContainer";
 
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
   const navigate = useNavigate();
-  const [currentchat, setCurrentChat] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(undefined);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -36,11 +37,6 @@ const Chat = () => {
     fetchContacts();
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate('/login');
-  };
-
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   }
@@ -49,9 +45,14 @@ const Chat = () => {
     <div className="ChatContainer">
       <div className="chat-container">
         <Contacts contacts={contacts} changeChat={handleChatChange}/>
-        <Welcome />
+        {
+          currentChat === undefined ? (
+            <Welcome />
+          ) : (
+              <ChatContainer currentChat = {currentChat}/>
+          )
+        }
       </div>
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
