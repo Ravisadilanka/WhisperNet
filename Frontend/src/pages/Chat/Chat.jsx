@@ -5,6 +5,7 @@ import { allUsersRoute } from "../../utils/APIRoutes";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import Contacts from "../../components/Contacts/Contacts";
+import Welcome from "../../components/Welcome/Welcome";
 
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
@@ -48,7 +49,7 @@ const Chat = () => {
     <div className="ChatContainer">
       <div className="chat-container">
         <Contacts contacts={contacts} changeChat={handleChatChange}/>
-        
+        <Welcome />
       </div>
       <button onClick={handleLogout}>Logout</button>
     </div>
