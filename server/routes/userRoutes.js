@@ -78,4 +78,14 @@ router.get('/allusers/:id', auth, async (req, res) => {
   }
 })
 
+router.get('/currentuser', auth, async (req, res) => {
+  try {
+    const user = await Users.findById(req.user._id).select('-password')
+
+    res.send(user)
+  } catch (error) {
+    res.status(500).send('Error getting all users: ' + error.message);
+  }
+})
+
 module.exports = router;

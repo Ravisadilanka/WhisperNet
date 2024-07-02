@@ -24,13 +24,6 @@ const SetAvatar = () => {
     theme: "dark",
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate('/');
-    }
-  },[])
-
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOptions);

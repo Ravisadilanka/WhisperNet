@@ -31,9 +31,9 @@ const Register = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate('/');
+      navigate("/");
     }
-  },[])
+  }, []);
 
   const handleValidation = () => {
     const { password, confirmPassword, username, email } = values;
@@ -63,11 +63,9 @@ const Register = () => {
           email,
           password,
         });
-        const token = response.headers['x-auth-token'];
-        if (token) {
-          localStorage.setItem("token", token);
-          navigate('/setAvatar');
-        }
+        const token = response.headers["x-auth-token"];
+        localStorage.setItem("token", token);
+        navigate("/setAvatar");
       } catch (error) {
         if (error.response) {
           toast.error(error.response.data, toastOptions);
