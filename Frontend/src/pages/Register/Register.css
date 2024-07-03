@@ -21,7 +21,7 @@
     color: white;
     text-transform: uppercase;
 }
-form{
+.register-fromt{
     display: flex;
     flex-direction: column;
     gap: 2rem;

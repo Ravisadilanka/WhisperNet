@@ -3,8 +3,13 @@ import React, { useEffect, useState } from "react";
 import { currentUserRoute } from "../../utils/APIRoutes";
 import './ChatContainer.css'
 import Logout from "../Logout/Logout";
+import ChatInput from "../ChatInput/ChatInput";
+import Messages from "../Messages/Messages";
 
 const ChatContainer = ({ currentChat }) => {
+  const handleSendMsg = async (msg) => {
+    alert(msg)
+  }
 
   return (
     <div className="chatcontainer">
@@ -22,8 +27,8 @@ const ChatContainer = ({ currentChat }) => {
         </div>
         <Logout />
       </div>
-      <div className="chat-messages"></div>
-      <div className="chat-input"></div>
+      <Messages className='chat-message'/>
+      <ChatInput handleSendMsg={handleSendMsg}/>
     </div>
   );
 };

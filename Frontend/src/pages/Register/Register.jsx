@@ -79,7 +79,7 @@ const Register = () => {
   return (
     <>
       <div className="formContainer">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="register-fromt">
           <div className="brand">
             <img src={Logo} alt="Logo" />
             <h1>WhisperNet</h1>
