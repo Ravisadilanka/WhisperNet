@@ -33,7 +33,7 @@ router.post('/getmsg/', auth, async (req, res) => {
         const displayMessages = messages.map((msg) => {
             return {
                 fromSelf: msg.sender.toString() === from,
-                messages: msg.message.text
+                message: msg.message.text
             }
         });
 

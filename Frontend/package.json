@@ -20,8 +20,10 @@
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.0",
     "react-toastify": "^10.0.5",
+    "socket.io-client": "^4.7.5",
     "styled": "^1.0.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
